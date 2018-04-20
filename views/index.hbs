@@ -1,0 +1,121 @@
+<html ng-app="app">
+
+<head>
+  <title>Express</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+  
+  <script src="./javascripts/script.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+
+  <style>
+      #three{
+          position: fixed;
+          top:18%;
+          left: 50%;
+
+      }
+      
+       #four{
+          position: fixed;
+          top:18%;
+          left: 61%;
+
+      }
+      #one{
+          position: fixed;
+          top:18%;
+          left: 28%;
+
+      }
+        #two{
+          position: fixed;
+          top:18%;
+          left: 39%;
+
+      }
+      .shelf{
+         position: fixed;
+          top: 40%;
+          left:15%;
+          
+      }
+
+      table{
+          position: absolute;
+          top: 55%;
+          width: 50%;
+      }
+  </style>
+</head>
+
+<body class="#424242 grey darken-3" ng-controller="main">
+ <img src="/images/shelf.png" alt="" srcset="" class="shelf">
+ <img src="/images/xml.png" alt="" srcset="" id="one" class="z-depth-3" >
+ <img src="/images/xml.png" alt="" srcset="" id="two" class="z-depth-3" >
+<img src="/images/xml.png" alt="" srcset="" id="three" class="z-depth-3" >
+<img src="/images/xml.png" alt="" srcset="" id="four" class="z-depth-3" >
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col m10 offset-m1">
+
+   
+
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="col m8 offset-m1">
+    
+            <table>
+                <thead>
+                  <tr>
+                      <th>Name</th>
+                      <th>Discription</th>
+                      <th>Article</th>
+                  </tr>
+                </thead>
+        
+                <tbody>
+                  <tr ng-repeat="x in article">
+                    <td>\{{x.title}}</td>
+                 
+                    <td>\{{x.summery}}</td>
+                    <td><a href=\{{x.articleLocation}} target="blank">article</a>
+                    <br><br><br></td>
+                      <br><br><br>
+                  </tr>
+           
+                </tbody>
+              </table>
+                    
+    
+        </div>
+    
+      </div>
+
+  </div>
+
+  
+</body>
+<script>
+  var app =angular.module("app",[]);
+  app.controller("main",["$scope","$http",function($scope,$http){
+      $scope.article = "";
+      $http.get("/article/get-articles-data")
+    .then(function(response) {
+        console.log(response.data);
+        $scope.article =response.data;
+    });
+
+  }]);
+
+ 
+        
+</script>
+</html>
