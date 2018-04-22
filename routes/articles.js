@@ -1,10 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var articleDB = require("../config/articles");
+var articleMiddlewear = require("../config/auth.controll");
 
 
 /* GET home page. */
-router.post('/article-publishe',(req, res, next)=> {
+router.post('/article-publishe',articleMiddlewear(),(req, res, next)=> {
 
     let uploadFile =req.files.article;
     var userdb = new articleDB({
@@ -26,7 +27,7 @@ router.post('/article-publishe',(req, res, next)=> {
     
     res.send("dat saved");
 });
-router.get("/admin-panel",(req,res,next)=>{
+router.get("/admin-panel",articleMiddlewear(),(req,res,next)=>{
 
     res.render("admin");
 
