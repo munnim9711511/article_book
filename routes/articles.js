@@ -43,4 +43,11 @@ router.get("/get-articles-data",(req,res,next)=>{
       
 });
 
+router.get("/get-last-four-articles",(req,res,next)=>{
+    articleDB.find({},null,{limit:4},function (err, resdb) {
+        if (err) return console.error(err);
+        res.send(resdb);
+      });
+});
+
 module.exports = router;
