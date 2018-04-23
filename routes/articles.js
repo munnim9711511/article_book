@@ -50,5 +50,8 @@ router.get("/get-last-four-articles",(req,res,next)=>{
         res.send(resdb);
       });
 });
+router.post("/publish-note",(req,res,next)=>{
+
+});
 
 module.exports = router;
