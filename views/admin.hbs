@@ -65,15 +65,21 @@
     <h5><em>Important Notice</em></h5>
     <div class="col m9">
 
-      <form action="" method="post">
+      <form action="/article/publish-note" method="post">
         <div class="row">
           <div class="input-field">
-              <textarea id="textarea1" class="materialize-textarea" name="summery"></textarea>
+            <input type="text" name="title">
+            <label for="">Titile</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field">
+              <textarea id="textarea1" class="materialize-textarea" name="message"></textarea>
           <label for="disabled">Notice</label>
           </div>
         </div>
         <div class="row">
-          <input type="button"  class="btn" value="post notice">
+          <input type="submit"  class="btn" value="post notice">
         </div>
       </form>
     </div>

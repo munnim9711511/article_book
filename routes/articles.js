@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var articleDB = require("../config/articles");
 var articleMiddlewear = require("../config/auth.controll");
-
+var note = require("../config/notics");
 
 /* GET home page. */
 router.post('/article-publishe',articleMiddlewear(),(req, res, next)=> {
@@ -51,7 +51,14 @@ router.get("/get-last-four-articles",(req,res,next)=>{
       });
 });
 router.post("/publish-note",(req,res,next)=>{
+    var noteDB = new note({
 
+        title:req.body.title,
+        message:req.body.message
+
+    });
+    noteDB.save();
+   res.status(200);
 });
 
 module.exports = router;
