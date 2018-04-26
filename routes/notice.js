@@ -4,7 +4,7 @@ var noticedb = require("../config/notics");
 
 /* GET users listing. */
 router.get('/lates-notice', function(req, res, next) {
-  noticedb.find({},null,{limit:1},function(erro,notice){
+  noticedb.find({},null,{},function(erro,notice){
        res.send(notice);
   });
 });
