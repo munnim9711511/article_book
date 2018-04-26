@@ -75,6 +75,18 @@
 
 
   <div class="container">
+  <!-- Modal Trigger -->
+  
+ <!-- Modal Structure -->
+  <div id="modal1" class="modal bottom-sheet">
+    <div class="modal-content" ng-repeat="x in notice">
+      <h4>\{{x.title}}</h4>
+      <p>\{{x.message}}</p>
+    </div>
+  
+  </div>
+          
+
     <div class="row">
       <div class="col m10 offset-m1">
 
@@ -83,8 +95,8 @@
       </div>
     </div>
     <div id="notice">
-      <h6>Notice</h6>
-
+      
+<a class=" modal-trigger" href="#modal1"><h6>Notice</h6></a>
     </div>
 
     <div class="row">
@@ -125,6 +137,11 @@
   var app =angular.module("app",[]);
   app.controller("main",["$scope","$http",function($scope,$http){
       $scope.article = "";
+      $scope.notice = "";
+      $http.get("/notice/lates-notice").then(function(res){
+        console.log(res.data);
+        $scope.notice = res.data;
+      });
       $http.get("/article/get-articles-data")
     .then(function(response) {
         console.log(response.data);
@@ -133,7 +150,10 @@
 
   }]);
 
- 
+ $(document).ready(function(){
+    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
+  });
         
 </script>
 </html>
