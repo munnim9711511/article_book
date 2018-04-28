@@ -7,8 +7,9 @@ var articleSchema = new Schema({
     title:String,
     summery:String,
     articleName:String,
-    datePublished:{ type: Date, default: Date.now },
-    articleLocation:String
+    datePublished:String,
+    articleLocation:String,
+    articlecoverPage:String
 
 });
 

@@ -8,16 +8,25 @@ var note = require("../config/notics");
 router.post('/article-publishe',articleMiddlewear(),(req, res, next)=> {
 
     let uploadFile =req.files.article;
+    let coverPage = req.files.coverpage;
     var userdb = new articleDB({
         title:req.body.title,
         articleName:req.body.articleName,
         summery:req.body.summery,
-        articleLocation:`/upload/${req.body.articleName}.pdf`
+        articleLocation:`/upload/${req.body.articleName}.pdf`,
+        articlecoverPage:`/coverpage/${req.body.articleName}.jpg`
     });
 
 
     userdb.save();
     uploadFile.mv(`./public/upload/${req.body.articleName}.pdf`,(err)=>{
+
+        if(err){
+            return res.status(500).send(err);
+        }
+
+    });
+    coverPage.mv(`./public/coverpage/${req.body.articleName}.jpg`,(err)=>{
 
         if(err){
             return res.status(500).send(err);

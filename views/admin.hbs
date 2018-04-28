@@ -29,7 +29,11 @@
                       <input id="first_name" type="text" name="title" class="validate">
                       <label for="first_name">Title</label>
                       </div>
-                  
+                        <div class="row">
+                      <div class="input-field col s6">
+                      <input type="text" class="datepicker">
+                      <label >Date</label>
+                      </div>
                       <div class="input-field col s6">
                       <input id="last_name" type="text" class="validate" name="articleName">
                       <label for="last_name">Article Name</label>
@@ -46,6 +50,17 @@
             <div class="btn" style="width:25ex;">
             <span>File</span>
             <input type="file" name="article">
+            </div>
+            <div class="file-path-wrapper">
+            <input class="file-path validate btn" type="text">
+            </div>
+            </div>
+
+             <div class="row">
+            <div class="file-field input-field">
+            <div class="btn" style="width:25ex;">
+            <span>cover</span>
+            <input type="file" name="coverpage">
             </div>
             <div class="file-path-wrapper">
             <input class="file-path validate btn" type="text">
@@ -95,6 +110,9 @@
 </div>
 <script>
     $(function(){
+
+         $('.datepicker').datepicker();
+
 
           
     })

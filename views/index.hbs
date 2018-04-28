@@ -15,32 +15,32 @@
 
   <style>
       #three{
-          position: fixed;
+          position: absolute;
           top:18%;
           left: 50%;
 
       }
       
        #four{
-          position: fixed;
+          position: absolute;
           top:18%;
           left: 61%;
 
       }
       #one{
-          position: fixed;
+          position: absolute;
           top:18%;
           left: 28%;
 
       }
         #two{
-          position: fixed;
+          position: absolute;
           top:18%;
           left: 39%;
 
       }
       .shelf{
-         position: fixed;
+         position: absolute;
           top: 40%;
           left:15%;
           
@@ -53,12 +53,12 @@
       }
       #frame{
         width: 20%;
-        position: fixed;
+        position: absolute;
         left:75%;
       }
       #notice{
         top: 12%;
-         position: fixed;
+         position: absolute;
         left:79%;
        
       }
@@ -80,19 +80,13 @@
  <!-- Modal Structure -->
   <div id="modal1" class="modal ">
     <div class="row">
-      <div class="col m4">
-        <div class="input-field">
-            <input type="text"  ng-model = "article">
-            <label for="">Search</label>
-        </div>
-        
-      </div>
+  
       
     </div>
-    <div class="modal-content" ng-repeat="x in notice | filter:article">
-      <h4>\{{x.title}} \{{x.datePublishedt|date}}</h4>
+    <div class="modal-content" ng-repeat="n in notice">
+      <h4>\{{n.title}}</h4>
       <hr>
-      <p><strong>\{{x.message}}</strong></p>
+      <p><strong>\{{n.message}}</strong></p>
     </div>
   
   </div>
@@ -116,8 +110,8 @@
             <table>
                 <thead>
                   <tr>
-                      <th>Name</th>
-                      <th>Discription</th>
+                      <th>Issue</th>
+                      <th>Dat</th>
                       <th>Article</th>
                   </tr>
                 </thead>
@@ -127,9 +121,9 @@
                     <td>\{{x.title}}</td>
                  
                     <td>\{{x.summery}}</td>
-                    <td><a href=\{{x.articleLocation}} target="blank">article</a>
-                    <br><br><br></td>
-                      <br><br><br>
+                    <td><a href=\{{x.articleLocation}} target="blank"><img src="/images/book.png"  class="responsive-img" width="50px"></a>
+                   
+               
                   </tr>
            
                 </tbody>
@@ -150,8 +144,9 @@
       $scope.article = "";
       $scope.notice = "";
       $http.get("/notice/lates-notice").then(function(res){
-        console.log(res.data);
+        //console.log(res.data);
         $scope.notice = res.data;
+        console.log($scope.notice)
       });
       $http.get("/article/get-articles-data")
     .then(function(response) {
