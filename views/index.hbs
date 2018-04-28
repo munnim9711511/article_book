@@ -78,9 +78,19 @@
   <!-- Modal Trigger -->
   
  <!-- Modal Structure -->
-  <div id="modal1" class="modal bottom-sheet">
-    <div class="modal-content" ng-repeat="x in notice">
-      <h4>\{{x.title}}</h4>
+  <div id="modal1" class="modal ">
+    <div class="row">
+      <div class="col m4">
+        <div class="input-field">
+            <input type="text"  ng-model = "article">
+            <label for="">Search</label>
+        </div>
+        
+      </div>
+      
+    </div>
+    <div class="modal-content" ng-repeat="x in notice | filter:article">
+      <h4>\{{x.title}} \{{x.datePublishedt|date}}</h4>
       <hr>
       <p><strong>\{{x.message}}</strong></p>
     </div>
