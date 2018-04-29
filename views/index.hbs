@@ -9,7 +9,12 @@
   <link rel="stylesheet" href="/stylesheets/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-  
+  <script src="./javascripts/js/html2canvas.min.js" charset="utf-8"></script>
+  <script src="./javascripts/js/three.min.js" charset="utf-8"></script>
+  <script src="./javascripts/js/default-book-view.js" charset="utf-8"></script>
+
+  <script type="text/javascript" src="http://heyzine.com/release/jquery.pdfflipbook.1.js"></script>
+
   <script src="./javascripts/script.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
 
@@ -20,7 +25,7 @@
           left: 50%;
 
       }
-      
+
        #four{
           position: absolute;
           top:18%;
@@ -43,7 +48,7 @@
          position: absolute;
           top: 40%;
           left:15%;
-          
+
       }
 
       table{
@@ -57,10 +62,15 @@
         left:75%;
       }
       #notice{
-        top: 12%;
+        top: 7%;
          position: absolute;
-        left:79%;
-       
+        left:81%;
+
+
+      }
+
+      #notice:hover{
+         transform: scale(1.4);
       }
   </style>
 </head>
@@ -76,37 +86,37 @@
 
   <div class="container">
   <!-- Modal Trigger -->
-  
+
  <!-- Modal Structure -->
   <div id="modal1" class="modal ">
     <div class="row">
-  
-      
+
+
     </div>
     <div class="modal-content" ng-repeat="n in notice">
       <h4>\{{n.title}}</h4>
       <hr>
       <p><strong>\{{n.message}}</strong></p>
     </div>
-  
+
   </div>
-          
+
 
     <div class="row">
       <div class="col m10 offset-m1">
 
-   
+
 
       </div>
     </div>
     <div id="notice">
-      
-<a class=" modal-trigger" href="#modal1"><h6>Notice</h6></a>
+
+<a class=" modal-trigger" href="#modal1"><img src="/images/c-notice_icon.png" width="150px"></a>
     </div>
 
     <div class="row">
         <div class="col m8 offset-m1">
-    
+
             <table>
                 <thead>
                   <tr>
@@ -115,32 +125,37 @@
                       <th>Article</th>
                   </tr>
                 </thead>
-        
+
                 <tbody>
                   <tr ng-repeat="x in article">
                     <td>\{{x.title}}</td>
-                 
+
                     <td>\{{x.summery}}</td>
-                    <td><a href=\{{x.articleLocation}} target="blank"><img src="/images/book.png"  class="responsive-img" width="50px"></a>
-                   
-               
+                    <td>
+                      <a href=\{{x.articleLocation}} target="blank"><img src="/images/book.png"  class="responsive-img" width="50px"></a>
+
+
                   </tr>
-           
+
                 </tbody>
               </table>
-                    
-    
+
+
         </div>
-    
+
       </div>
 
   </div>
 
-  
+
 </body>
 <script>
   var app =angular.module("app",[]);
+
   app.controller("main",["$scope","$http",function($scope,$http){
+
+
+      $scope.latesArticles = "";
       $scope.article = "";
       $scope.notice = "";
       $http.get("/notice/lates-notice").then(function(res){
@@ -159,7 +174,8 @@
  $(document).ready(function(){
     // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
     $('.modal').modal();
+       $('a').pdfFlipbook({ key: 'a4cbf3a5e' });
   });
-        
+
 </script>
 </html>
